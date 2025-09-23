@@ -2,7 +2,9 @@
 
 <!-- Badges (auto-updated) -->
 <p>
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/22b0a448-e825-4bd1-b9fa-6d7253863829/deploy-status)](https://app.netlify.com/projects/letters-generator-app/deploys)
+<a href="https://app.netlify.com/sites/letters-generator-app/deploys">
+  <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/22b0a448-e825-4bd1-b9fa-6d7253863829/deploy-status" />
+</a>
   <a href="https://github.com/gsemikozov/letters-generator-app/actions/workflows/deploy-storybook.yml"><img alt="Storybook Deploy" src="https://github.com/gsemikozov/letters-generator-app/actions/workflows/deploy-storybook.yml/badge.svg" /></a>
 </p>
 
