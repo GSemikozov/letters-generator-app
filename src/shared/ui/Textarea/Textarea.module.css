@@ -1,0 +1,76 @@
+.textareaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-figma-6);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-tertiary);
+  line-height: 1.43;
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  transition: border-color var(--transition-duration-fast) var(--transition-timing-ease), box-shadow
+    var(--transition-duration-fast) var(--transition-timing-ease);
+  box-shadow: var(--shadow-sm);
+  resize: vertical;
+  min-height: 80px;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-50);
+}
+
+.textarea.invalid {
+  border: 1px solid var(--color-error-500);
+  box-shadow: var(--shadow-sm), 0 0 0 4px var(--color-error-50);
+}
+
+.textarea.success {
+  border-color: var(--color-success-500);
+  box-shadow: var(--shadow-sm), 0 0 0 1px var(--color-success-500);
+}
+
+.textarea:disabled {
+  background-color: var(--color-surface-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.characterCount {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-align: left;
+}
+
+.characterCount.error {
+  color: var(--color-text-error);
+}
+
+.error {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-error);
+  margin-top: var(--spacing-1);
+}

@@ -1,0 +1,39 @@
+name: Update README with deployment links
+
+on:
+  workflow_run:
+    workflows: ["Deploy to Netlify", "Deploy Storybook to GitHub Pages"]
+    types: [completed]
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Update README
+      run: |
+        # Get Netlify URL from environment or use default
+        NETLIFY_URL=${NETLIFY_URL:-"https://your-app-name.netlify.app"}
+        STORYBOOK_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+        
+        # Update README.md with deployment links
+        sed -i "s|🌐 **Live Demo:** .*|🌐 **Live Demo:** [$NETLIFY_URL]($NETLIFY_URL)|g" README.md
+        sed -i "s|📚 **Storybook:** .*|📚 **Storybook:** [$STORYBOOK_URL]($STORYBOOK_URL)|g" README.md
+        
+        # Commit changes if any
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git diff --staged --quiet || git commit -m "Update deployment links in README"
+        git push

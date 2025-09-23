@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--color-background-primary);
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-6); /* 24px */
+  border-bottom: 1px solid var(--color-figma-gray-100);
+  margin-bottom: var(--spacing-6); /* 24px */
+}
+
+.pageTitle {
+  margin: 0;
+}
+
+.createButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.createButtonLink {
+  text-decoration: none;
+}
+
+.lettersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--spacing-4); /* 16px */
+  margin-bottom: var(--spacing-12); /* 48px */
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-figma-54) var(--spacing-5);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-3) 0;
+}
+
+.emptyDescription {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-6) 0;
+  line-height: 1.56;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-10);
+}
+
+.loadingSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-figma-gray-50);
+  border-top: 3px solid var(--color-primary-600);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .createButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .lettersGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  .emptyState {
+    padding: var(--spacing-10) var(--spacing-4);
+  }
+
+  .emptyTitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .emptyDescription {
+    font-size: var(--font-size-base);
+  }
+}

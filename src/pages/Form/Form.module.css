@@ -1,0 +1,40 @@
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-6); /* 24px */
+  border-bottom: 1px solid var(--color-figma-gray-100);
+  margin-bottom: var(--spacing-6); /* 24px */
+}
+
+.pageTitle {
+  margin: 0;
+}
+
+.createButton {
+  text-decoration: none;
+}
+
+.goalBannerContainer {
+  margin-top: var(--spacing-12); /* 48px */
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .createButton {
+    width: 100%;
+  }
+
+  .createButton button {
+    width: 100%;
+    justify-content: center;
+  }
+}

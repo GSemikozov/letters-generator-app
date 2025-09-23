@@ -1,0 +1,11 @@
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--color-figma-gray-400);
+}
+
+.compact {
+  padding: 0;
+  min-height: auto;
+}

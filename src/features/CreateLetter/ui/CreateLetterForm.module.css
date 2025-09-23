@@ -1,0 +1,145 @@
+.twoColumnContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-8);
+  height: 100%;
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text-primary);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-background-tertiary);
+  margin-bottom: var(--spacing-6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  flex: 1;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+}
+
+.formActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: auto;
+}
+
+.generateButton {
+  width: 100%;
+}
+
+.tryAgainButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.previewColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.previewContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+}
+
+.emptyPreview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+  min-height: 300px;
+}
+
+.emptyDescription {
+  color: var(--color-text-secondary);
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  overflow-y: auto;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+.emptyActions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--spacing-4);
+}
+
+.previewActions {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.letterText {
+  white-space: pre-wrap;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  margin: 0;
+  color: var(--color-text-primary);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.copyButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: var(--spacing-4);
+}
+
+@media (max-width: 768px) {
+  .twoColumnContainer {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  .form {
+    gap: var(--spacing-4);
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  .formActions {
+    gap: var(--spacing-3);
+  }
+
+  .previewContent {
+    min-height: 300px;
+  }
+}
