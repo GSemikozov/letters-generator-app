@@ -10,8 +10,8 @@
 
 ## 🚀 Демо
 
-🌐 **Live Demo:** [Загружается...](https://letters-generator-app.netlify.app)
-📚 **Storybook:** [Загружается...](https://gsemikozov.github.io/letters-generator-app)
+🌐 **Live Demo:** [link](https://letters-generator-app.netlify.app)
+📚 **Storybook:** [link](https://gsemikozov.github.io/letters-generator-app)
 
 Приложение для генерации сопроводительных писем с мотивацией создать минимум 5 писем. Современное веб-приложение с красивым UI, построенное по принципам Feature-Sliced Design.
 
