@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   type LetterFormData,
@@ -20,16 +20,36 @@ export const CreateLetterForm = () => {
   const { createLetter, isLoading } = useCreateLetter();
   const [generatedText, setGeneratedText] = useState<string>('');
 
+  // Memoize form configuration to prevent recreation on every render
+  const formConfig = useMemo(
+    () => ({
+      resolver: zodResolver(letterFormSchema),
+      defaultValues: defaultLetterFormData,
+      mode: 'onChange' as const,
+    }),
+    []
+  );
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     reset,
-  } = useForm<LetterFormData>({
-    resolver: zodResolver(letterFormSchema),
-    defaultValues: defaultLetterFormData,
-    mode: 'onChange',
-  });
+    watch,
+  } = useForm<LetterFormData>(formConfig);
+
+  // Watch both fields together to minimize re-renders
+  const watchedFields = watch(['jobTitle', 'company']);
+  const [jobTitle, company] = watchedFields;
+
+  // Memoize the title and color to prevent unnecessary re-renders
+  const titleContent = useMemo(() => {
+    return jobTitle && company ? `${jobTitle}, ${company}` : 'New application';
+  }, [jobTitle, company]);
+
+  const titleColor = useMemo(() => {
+    return jobTitle && company ? 'primary' : 'secondary';
+  }, [jobTitle, company]);
 
   // Reset form when component mounts (when navigating to /create)
   useEffect(() => {
@@ -37,40 +57,43 @@ export const CreateLetterForm = () => {
     setGeneratedText('');
   }, [reset]);
 
-  const handleSuccess = (generatedText: string) => {
+  const handleSuccess = useCallback((generatedText: string) => {
     setGeneratedText(generatedText);
-  };
+  }, []);
 
-  const handleError = (error: string) => {
+  const handleError = useCallback((error: string) => {
     // For now, we'll just log the error since react-hook-form handles field errors
     console.error('Form submission error:', error);
-  };
+  }, []);
 
-  const onSubmit = async (data: LetterFormData) => {
-    const result = await createLetter(data);
-    if (result.success) {
-      // Get the generated text from the store
-      const letters = useAppStore.getState().letters;
-      const lastLetter = letters[0]; // First letter is the newest
-      if (lastLetter) {
-        handleSuccess(lastLetter.generatedText);
+  const onSubmit = useCallback(
+    async (data: LetterFormData) => {
+      const result = await createLetter(data);
+      if (result.success) {
+        // Get the generated text from the store
+        const letters = useAppStore.getState().letters;
+        const lastLetter = letters[0]; // First letter is the newest
+        if (lastLetter) {
+          handleSuccess(lastLetter.generatedText);
+        }
+      } else {
+        handleError(result.error || 'Unknown error');
       }
-    } else {
-      handleError(result.error || 'Unknown error');
-    }
-  };
+    },
+    [createLetter, handleSuccess, handleError]
+  );
 
-  const handleTryAgain = () => {
+  const handleTryAgain = useCallback(() => {
     setGeneratedText('');
     reset(defaultLetterFormData);
-  };
+  }, [reset]);
 
   return (
     <div className={styles.twoColumnContainer}>
       {/* Left Column - Form */}
       <div className={styles.formColumn}>
-        <Typography variant="heading2" className={styles.formTitle}>
-          New application
+        <Typography variant="heading2" className={styles.formTitle} color={titleColor}>
+          {titleContent}
         </Typography>
         <div className={styles.divider} />
 
