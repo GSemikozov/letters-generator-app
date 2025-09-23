@@ -1,4 +1,3 @@
-// removed unused React import
 import { Link } from 'react-router-dom';
 import { useAppStore } from '../../../shared/lib/store';
 import { Button } from '../../../shared/ui/Button';
@@ -7,20 +6,12 @@ import { Typography } from '../../../shared/ui/Typography';
 import { PlusIcon } from '../../../shared/ui/icons';
 import styles from './GoalBanner.module.css';
 
-export interface GoalBannerProps {
-  showOnlyWhenHasLetters?: boolean;
-}
-
-export const GoalBanner = ({ showOnlyWhenHasLetters = false }: GoalBannerProps) => {
+export const GoalBanner = () => {
   const { letters, goalCount } = useAppStore();
   const currentCount = letters.length;
   const isGoalReached = currentCount >= goalCount;
 
   if (isGoalReached) {
-    return null;
-  }
-
-  if (showOnlyWhenHasLetters && currentCount === 0) {
     return null;
   }
 

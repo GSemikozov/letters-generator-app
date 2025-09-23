@@ -26,7 +26,7 @@ body {
   min-height: 100vh;
 }
 
-/* Reset */
+/* Сброс стилей */
 h1,
 h2,
 h3,
@@ -50,7 +50,7 @@ textarea {
   font-family: inherit;
 }
 
-/* Focus styles */
+/* Стили фокуса */
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
@@ -58,7 +58,7 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Scrollbar styles */
+/* Стили скроллбара */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -76,7 +76,7 @@ textarea:focus-visible {
   background: var(--color-figma-gray-300);
 }
 
-/* Utility classes */
+/* Вспомогательные классы */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -90,17 +90,17 @@ textarea:focus-visible {
 }
 
 :root {
-  /* ===== BASE COLORS FROM FIGMA ===== */
-  /* Primary Colors */
+  /* ===== БАЗОВЫЕ ЦВЕТА ИЗ FIGMA ===== */
+  /* Основные (Primary) */
   --color-primary-50: #f0fdf4;
   --color-primary-500: #12b76a;
   --color-primary-600: #087443;
   --color-primary-700: #099250;
 
-  /* Base Colors */
+  /* Базовые цвета */
   --color-white: #ffffff;
 
-  /* Figma Grays */
+  /* Серые оттенки из Figma */
   --color-figma-gray-50: #f2f4f7;
   --color-figma-gray-100: #eaecf0;
   --color-figma-gray-200: #d0d5dd;
@@ -109,7 +109,7 @@ textarea:focus-visible {
   --color-figma-gray-500: #344054;
   --color-figma-gray-600: #101828;
 
-  /* Semantic Colors */
+  /* Семантические цвета */
   --color-success-50: #edfcf2;
   --color-success-200: #d1fadf;
   --color-success-300: #73e2a3;
@@ -120,26 +120,26 @@ textarea:focus-visible {
   --color-error-300: #fda29b;
   --color-error-500: #f04438;
 
-  /* Neutral colors for scrollbar */
+  /* Нейтральные цвета для скроллбара */
   --color-neutral-300: #98a2b3;
 
-  /* ===== SEMANTIC COLOR MAPPING ===== */
-  /* Background Colors */
+  /* ===== СЕМАНТИЧЕСКИЕ НАЗНАЧЕНИЯ ===== */
+  /* Цвета фона */
   --color-background-primary: var(--color-white);
   --color-background-secondary: var(--color-figma-gray-50);
   --color-background-tertiary: var(--color-figma-gray-100);
 
-  /* Surface Colors */
+  /* Цвета поверхностей */
   --color-surface-primary: var(--color-white);
   --color-surface-hover: var(--color-figma-gray-50);
   --color-surface-active: var(--color-figma-gray-100);
   --color-surface-disabled: var(--color-figma-gray-100);
 
-  /* Border Colors */
+  /* Цвета границ */
   --color-border-primary: var(--color-figma-gray-200);
   --color-border-focus: var(--color-primary-700);
 
-  /* Text Colors */
+  /* Цвета текста */
   --color-text-primary: var(--color-figma-gray-600);
   --color-text-secondary: var(--color-figma-gray-300);
   --color-text-tertiary: var(--color-figma-gray-500);
@@ -147,7 +147,7 @@ textarea:focus-visible {
   --color-text-inverse: var(--color-white);
   --color-text-error: var(--color-error-500);
 
-  /* ===== SPACING SYSTEM ===== */
+  /* ===== СИСТЕМА ОТСТУПОВ ===== */
   --spacing-0: 0;
   --spacing-1: 0.25rem; /* 4px */
   --spacing-2: 0.5rem; /* 8px */
@@ -164,15 +164,15 @@ textarea:focus-visible {
   --spacing-20: 5rem; /* 80px */
   --spacing-24: 6rem; /* 96px */
 
-  /* Figma Specific Spacing */
+  /* Специальные значения отступов из Figma */
   --spacing-figma-6: 0.375rem; /* 6px */
   --spacing-figma-54: 3.375rem; /* 54px */
 
-  /* ===== TYPOGRAPHY ===== */
+  /* ===== ТИПОГРАФИКА ===== */
   --font-family-primary: "Fixel", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
-  /* Font Sizes */
+  /* Размеры шрифта */
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-base: 1rem; /* 16px */

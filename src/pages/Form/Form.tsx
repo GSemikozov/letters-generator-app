@@ -1,4 +1,3 @@
-// removed unused React import
 import { Layout } from '../../app/ui';
 import { CreateLetterForm } from '../../features/CreateLetter';
 import { GoalBanner } from '../../widgets/GoalBanner';
@@ -10,7 +9,8 @@ export const Form = () => {
       <Layout>
         <CreateLetterForm />
         <div className={styles.goalBannerContainer}>
-          <GoalBanner showOnlyWhenHasLetters={true} />
+          {/* Баннер показывается внутрь по своей логике */}
+          <GoalBanner />
         </div>
       </Layout>
     </>

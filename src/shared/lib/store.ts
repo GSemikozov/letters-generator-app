@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { APP_CONFIG } from '../../app/config';
+import { generateLetter } from '../../entities/Letter/lib/letterGenerator';
 import { letterService } from '../api/letterService';
-import { generateLetter } from './letterGenerator';
 import type { LetterFormData } from './schemas';
 import type { AppState } from './types';
 
@@ -25,9 +25,10 @@ export const useAppStore = create<AppStore>()(
         set({ isLoading: true });
         try {
           const letters = await letterService.getAllLetters();
-          set({ letters, isLoading: false });
+          set({ letters });
         } catch (error) {
-          console.error('Failed to load letters:', error);
+          console.error('Не удалось загрузить письма:', error);
+        } finally {
           set({ isLoading: false });
         }
       },
@@ -44,14 +45,14 @@ export const useAppStore = create<AppStore>()(
 
           set((state) => ({
             letters: [letter, ...state.letters],
-            isLoading: false,
           }));
 
           return { success: true };
         } catch (error) {
-          console.error('Failed to create letter:', error);
-          set({ isLoading: false });
+          console.error('Не удалось создать письмо:', error);
           return { success: false, error: 'Failed to create letter' };
+        } finally {
+          set({ isLoading: false });
         }
       },
 
@@ -61,10 +62,10 @@ export const useAppStore = create<AppStore>()(
           await letterService.deleteLetter(id);
           set((state) => ({
             letters: state.letters.filter((letter) => letter.id !== id),
-            isLoading: false,
           }));
         } catch (error) {
-          console.error('Failed to delete letter:', error);
+          console.error('Не удалось удалить письмо:', error);
+        } finally {
           set({ isLoading: false });
         }
       },

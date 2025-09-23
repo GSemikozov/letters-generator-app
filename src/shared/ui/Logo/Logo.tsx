@@ -1,4 +1,3 @@
-// removed unused React import
 import styles from './Logo.module.css';
 
 export interface LogoProps {

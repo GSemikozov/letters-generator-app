@@ -1,4 +1,3 @@
-// removed unused React import
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../../app/ui';
@@ -20,9 +19,7 @@ export const Dashboard = () => {
     await deleteLetter(id);
   };
 
-  const handleCopy = () => {
-    // Copy feedback could be added here
-  };
+  const handleCopy = () => {};
 
   if (isLoading) {
     return (
@@ -59,7 +56,7 @@ export const Dashboard = () => {
               />
             ))}
           </div>
-          {letters.length < 5 && <GoalBanner showOnlyWhenHasLetters={false} />}
+          {letters.length < 5 && <GoalBanner />}
         </>
       </Layout>
     </>
