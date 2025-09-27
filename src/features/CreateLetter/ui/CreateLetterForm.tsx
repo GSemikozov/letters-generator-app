@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   type LetterFormData,
@@ -17,18 +17,15 @@ import { useCreateLetter } from '../model/useCreateLetter';
 import styles from './CreateLetterForm.module.css';
 
 export const CreateLetterForm = () => {
-  const { createLetter, isLoading } = useCreateLetter();
+  const { createLetter, regenerateLetter, isLoading } = useCreateLetter();
   const [generatedText, setGeneratedText] = useState<string>('');
+  const [currentLetterId, setCurrentLetterId] = useState<string | null>(null);
 
-  // Memoize form configuration to prevent recreation on every render
-  const formConfig = useMemo(
-    () => ({
-      resolver: zodResolver(letterFormSchema),
-      defaultValues: defaultLetterFormData,
-      mode: 'onChange' as const,
-    }),
-    []
-  );
+  const formConfig = {
+    resolver: zodResolver(letterFormSchema),
+    defaultValues: defaultLetterFormData,
+    mode: 'onChange' as const,
+  };
 
   const {
     register,
@@ -38,55 +35,65 @@ export const CreateLetterForm = () => {
     watch,
   } = useForm<LetterFormData>(formConfig);
 
-  // Watch both fields together to minimize re-renders
-  const watchedFields = watch(['jobTitle', 'company']);
-  const [jobTitle, company] = watchedFields;
+  const formValues = watch();
+  const { jobTitle, company } = formValues;
 
-  // Memoize the title and color to prevent unnecessary re-renders
-  const titleContent = useMemo(() => {
-    return jobTitle && company ? `${jobTitle}, ${company}` : 'New application';
-  }, [jobTitle, company]);
+  const hasAnyContent = jobTitle || company;
+  const titleContent = hasAnyContent
+    ? [jobTitle, company].filter(Boolean).join(', ')
+    : 'New application';
+  const titleColor = hasAnyContent ? 'primary' : 'secondary';
 
-  const titleColor = useMemo(() => {
-    return jobTitle && company ? 'primary' : 'secondary';
-  }, [jobTitle, company]);
-
-  // Reset form when component mounts (when navigating to /create)
   useEffect(() => {
     reset(defaultLetterFormData);
     setGeneratedText('');
+    setCurrentLetterId(null);
   }, [reset]);
 
-  const handleSuccess = useCallback((generatedText: string) => {
+  const handleSuccess = (generatedText: string) => {
     setGeneratedText(generatedText);
-  }, []);
+  };
 
-  const handleError = useCallback((error: string) => {
+  const handleError = (error: string) => {
     // For now, we'll just log the error since react-hook-form handles field errors
     console.error('Form submission error:', error);
-  }, []);
+  };
 
-  const onSubmit = useCallback(
-    async (data: LetterFormData) => {
-      const result = await createLetter(data);
-      if (result.success) {
-        // Get the generated text from the store
-        const letters = useAppStore.getState().letters;
-        const lastLetter = letters[0]; // First letter is the newest
-        if (lastLetter) {
-          handleSuccess(lastLetter.generatedText);
-        }
-      } else {
-        handleError(result.error || 'Unknown error');
+  const onSubmit = async (data: LetterFormData) => {
+    const result = await createLetter(data);
+    if (result.success) {
+      const letters = useAppStore.getState().letters;
+      const lastLetter = letters[0]; // First letter is the newest
+      if (lastLetter) {
+        setCurrentLetterId(lastLetter.id);
+        handleSuccess(lastLetter.generatedText);
       }
-    },
-    [createLetter, handleSuccess, handleError]
-  );
+    } else {
+      handleError(result.error || 'Unknown error');
+    }
+  };
 
-  const handleTryAgain = useCallback(() => {
-    setGeneratedText('');
-    reset(defaultLetterFormData);
-  }, [reset]);
+  const handleTryAgain = async () => {
+    if (!currentLetterId) return;
+
+    const formData = {
+      jobTitle: watch('jobTitle'),
+      company: watch('company'),
+      skills: watch('skills'),
+      additionalDetails: watch('additionalDetails') || '',
+    };
+
+    const result = await regenerateLetter(currentLetterId, formData);
+    if (result.success) {
+      const letters = useAppStore.getState().letters;
+      const updatedLetter = letters.find((letter) => letter.id === currentLetterId);
+      if (updatedLetter) {
+        handleSuccess(updatedLetter.generatedText);
+      }
+    } else {
+      handleError(result.error || 'Failed to regenerate letter');
+    }
+  };
 
   return (
     <div className={styles.twoColumnContainer}>
@@ -144,10 +151,15 @@ export const CreateLetterForm = () => {
                 type="button"
                 variant="secondary"
                 onClick={handleTryAgain}
+                loading={isLoading}
                 className={styles.tryAgainButton}
               >
-                <RepeatIcon size={20} aria-label="Refresh icon" />
-                Try Again
+                {!isLoading && (
+                  <>
+                    <RepeatIcon size={20} aria-label="Refresh icon" />
+                    Try Again
+                  </>
+                )}
               </Button>
             ) : (
               <Button
@@ -155,8 +167,7 @@ export const CreateLetterForm = () => {
                 variant="primary"
                 size="large"
                 loading={isLoading}
-                loadingText="Generating..."
-                disabled={!isValid || isLoading}
+                disabled={!isValid}
                 tooltipText={
                   !isValid
                     ? 'Please fill in all required fields (Job title, Company, and Skills)'
@@ -174,7 +185,11 @@ export const CreateLetterForm = () => {
       {/* Right Column - Preview */}
       <div className={styles.previewColumn}>
         <div className={styles.previewContent}>
-          {generatedText ? (
+          {isLoading ? (
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingSpinner} />
+            </div>
+          ) : generatedText ? (
             <div className={styles.previewActions}>
               <pre className={styles.letterText}>{generatedText}</pre>
             </div>
@@ -185,11 +200,13 @@ export const CreateLetterForm = () => {
               </div>
             </div>
           )}
-          <div className={styles.copyButtonContainer}>
-            <CopyButton text={generatedText || ''} variant="ghost" size="medium">
-              Copy to clipboard
-            </CopyButton>
-          </div>
+          {!isLoading && (
+            <div className={styles.copyButtonContainer}>
+              <CopyButton text={generatedText || ''} variant="ghost" size="medium">
+                Copy to clipboard
+              </CopyButton>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: var(--radius-base);
+  border-radius: 50%;
   background-color: var(--color-text-primary);
   opacity: 0.24;
   transition: opacity 0.2s ease;

@@ -56,4 +56,8 @@
   .progressSection {
     gap: var(--spacing-2);
   }
+
+  .homeButton {
+    display: none;
+  }
 }

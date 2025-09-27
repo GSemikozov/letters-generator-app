@@ -10,6 +10,10 @@ interface AppStore extends AppState {
   // Actions
   loadLetters: () => Promise<void>;
   createLetter: (formData: LetterFormData) => Promise<{ success: boolean; error?: string }>;
+  regenerateLetter: (
+    id: string,
+    formData: LetterFormData
+  ) => Promise<{ success: boolean; error?: string }>;
   deleteLetter: (id: string) => Promise<void>;
   setLoading: (loading: boolean) => void;
 }
@@ -27,7 +31,7 @@ export const useAppStore = create<AppStore>()(
           const letters = await letterService.getAllLetters();
           set({ letters });
         } catch (error) {
-          console.error('Не удалось загрузить письма:', error);
+          console.error('Failed to load letters:', error);
         } finally {
           set({ isLoading: false });
         }
@@ -36,7 +40,7 @@ export const useAppStore = create<AppStore>()(
       createLetter: async (formData: LetterFormData) => {
         set({ isLoading: true });
         try {
-          const generatedText = generateLetter(formData);
+          const generatedText = await generateLetter(formData);
           const letter = await letterService.saveLetter({
             ...formData,
             additionalDetails: formData.additionalDetails || '',
@@ -49,8 +53,31 @@ export const useAppStore = create<AppStore>()(
 
           return { success: true };
         } catch (error) {
-          console.error('Не удалось создать письмо:', error);
+          console.error('Failed to create letter:', error);
           return { success: false, error: 'Failed to create letter' };
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
+      regenerateLetter: async (id: string, formData: LetterFormData) => {
+        set({ isLoading: true });
+        try {
+          const generatedText = await generateLetter(formData);
+          const updatedLetter = await letterService.updateLetter(id, {
+            ...formData,
+            additionalDetails: formData.additionalDetails || '',
+            generatedText,
+          });
+
+          set((state) => ({
+            letters: state.letters.map((letter) => (letter.id === id ? updatedLetter : letter)),
+          }));
+
+          return { success: true };
+        } catch (error) {
+          console.error('Failed to regenerate letter:', error);
+          return { success: false, error: 'Failed to regenerate letter' };
         } finally {
           set({ isLoading: false });
         }
@@ -64,7 +91,7 @@ export const useAppStore = create<AppStore>()(
             letters: state.letters.filter((letter) => letter.id !== id),
           }));
         } catch (error) {
-          console.error('Не удалось удалить письмо:', error);
+          console.error('Failed to delete letter:', error);
         } finally {
           set({ isLoading: false });
         }

@@ -10,7 +10,7 @@
 
 ## Демо
 
-Live Demo: https://letters-generator-app.netlify.app
+Demo: https://letters-generator-app.netlify.app
 Storybook: https://gsemikozov.github.io/letters-generator-app
 
 Приложение для генерации сопроводительных писем с мотивацией создать минимум 5 писем.
@@ -70,12 +70,15 @@ src/
 ## Функциональность
 
 ### Основные возможности
-- Создание сопроводительных писем по шаблону
+- Создание сопроводительных писем с помощью AI (OpenAI API)
+- Регенерация существующих писем с новыми данными
 - Сохранение писем в IndexedDB
-- Баннер-цель на 5 писем
-- Индикатор прогресса
+- Баннер-цель на 5 писем с индикатором прогресса
 - Копирование и удаление писем
-- Адаптивный дизайн
+- Адаптивный дизайн с оптимизацией для мобильных устройств
+- Динамический заголовок формы
+- Валидация форм с помощью Zod
+- Состояния загрузки с анимированным спиннером
 
 ## Запуск проекта
 
@@ -99,21 +102,45 @@ npm run storybook
 npm run build-storybook
 ```
 
-## Шаблон письма
+## AI Интеграция
 
+Приложение поддерживает два режима генерации писем:
+
+### Режим OpenAI (по умолчанию)
+- Реальная генерация с помощью OpenAI API
+- Динамический промпт на основе данных формы
+- Настраивается в `src/app/config/aiConfig.ts`
+
+### Режим Mock
+- Симуляция AI с задержкой 2-3 секунды
+- Используется для разработки и тестирования
+
+### Настройка API ключа
+
+1. **Создайте файл `.env` в корне проекта:**
+```bash
+cp env.example .env
 ```
-Dear [Company] Team,
 
-I am writing to express my interest in the [JobTitle] position.
-
-My experience in the realm combined with my skills in [SkillsList] make me a strong candidate for this role.
-
-[AdditionalDetails]
-
-I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
-
-Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.
+2. **Добавьте ваш OpenAI API ключ в `.env`:**
+```env
+VITE_OPENAI_API_KEY=your_actual_openai_api_key_here
 ```
+
+3. **Перезапустите приложение:**
+```bash
+npm run dev
+```
+
+### Конфигурация AI
+```typescript
+export const AI_CONFIG = {
+  SERVICE_TYPE: 'openai' as 'openai' | 'mock',
+  GENERATION_DELAY: { MIN: 2000, MAX: 3000 }
+};
+```
+
+### Легко расширяется если надо подключить другие AI
 
 ## Storybook
 
@@ -125,11 +152,30 @@ Thank you for considering my application. I eagerly await the opportunity to dis
 
 ### Компоненты в Storybook
 
-- **Atoms**: Button, Input, Typography
+- **Atoms**: Button, Input, Textarea, Typography
 - **Molecules**: Card, CopyButton, Container
 - **Organisms**: ProgressIndicator, Logo
 - **Icons**: PlusIcon, HomeIcon, CopyIcon, CheckIcon, RepeatIcon, TrashIcon, LoadingIcon
-- **Layout**: Layout, Header
+- **Layout**: Header (Layout удален из shared/ui)
+
+## Дизайн-система
+
+### Цветовая палитра
+- Основана на дизайне из Figma
+- Семантические цвета для фона, текста, границ
+- Поддержка состояний (success, error, disabled)
+
+### Типографика
+- Шрифт: Fixel
+- Адаптивные размеры на основе rem единиц
+
+### Отступы
+- Выстраиваем адаптивный дизайн на основе rem
+
+### Компоненты
+- Atomic Design принципы
+- CSS Modules для изоляции стилей
+- Состояния загрузки и интерактивности
 
 ## TODO
 
@@ -138,4 +184,6 @@ Thank you for considering my application. I eagerly await the opportunity to dis
 - Экспорт писем в PDF
 - Шаблоны писем
 - История изменений
-- Доп. оптимизация загрузки шрифтов
+- React transitions для плавных переходов
+- Оптимизация производительности
+- Мелкие импрувы при переходах и обновлениях (страниц и стора)
