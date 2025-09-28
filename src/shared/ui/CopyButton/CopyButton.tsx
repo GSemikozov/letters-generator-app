@@ -37,16 +37,13 @@ export const CopyButton = ({
       onClick={handleCopy}
       className={classNames(styles.copyButton, variant === 'ghost' && styles.compact, className)}
       disabled={!!error}
-      icon={
-        isCopied ? (
-          <CheckIcon size={20} aria-label="Copied!" />
-        ) : (
-          <CopyIcon size={20} aria-label="Copy to clipboard" />
-        )
-      }
-      iconPosition="right"
     >
       {isCopied ? 'Copied!' : children}
+      {isCopied ? (
+        <CheckIcon size={20} aria-label="Copied!" />
+      ) : (
+        <CopyIcon size={20} aria-label="Copy to clipboard" />
+      )}
     </Button>
   );
 };

@@ -6,8 +6,6 @@ import styles from './Button.module.css';
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
   size?: 'small' | 'medium' | 'large';
-  icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
   loading?: boolean;
   loadingText?: string;
   tooltipText?: string;
@@ -17,8 +15,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = ({
   variant = 'primary',
   size = 'medium',
-  icon,
-  iconPosition = 'left',
   loading = false,
   loadingText,
   tooltipText,
@@ -45,13 +41,9 @@ export const Button = ({
           {loadingText || children}
         </>
       ) : variant === 'icon' ? (
-        icon
+        children
       ) : (
-        <>
-          {icon && iconPosition === 'left' && <span className={styles.iconSlot}>{icon}</span>}
-          {children}
-          {icon && iconPosition === 'right' && <span className={styles.iconSlot}>{icon}</span>}
-        </>
+        <>{children}</>
       )}
     </button>
   );

@@ -35,12 +35,9 @@ export const Header = () => {
               />
             </div>
             <Link to="/" className={styles.homeButton} aria-label="Home">
-              <Button
-                type="button"
-                variant="icon"
-                size="medium"
-                icon={<HomeIcon size={20} aria-label="Home icon" />}
-              />
+              <Button type="button" variant="icon" size="medium">
+                <HomeIcon size={20} aria-label="Home icon" />
+              </Button>
             </Link>
           </div>
         </div>

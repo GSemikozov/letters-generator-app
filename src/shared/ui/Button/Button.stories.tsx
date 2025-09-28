@@ -61,12 +61,12 @@ export const Ghost: Story = {
 };
 
 export const WithIcon: Story = {
-  args: {
-    children: 'Button with Icon',
-    variant: 'primary',
-    size: 'medium',
-    icon: <PlusIcon size={24} aria-label="Plus icon" />,
-  },
+  render: () => (
+    <Button variant="primary" size="medium">
+      <PlusIcon size={20} aria-label="Plus icon" />
+      Button with Icon
+    </Button>
+  ),
 };
 
 export const Small: Story = {
@@ -100,7 +100,9 @@ export const AllVariants: Story = {
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
-      <Button variant="icon" icon={<PlusIcon size={20} aria-label="Plus icon" />} />
+      <Button variant="icon">
+        <PlusIcon size={20} aria-label="Plus icon" />
+      </Button>
     </div>
   ),
 };
@@ -127,9 +129,15 @@ export const Loading: Story = {
 export const IconButton: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="icon" size="small" icon={<PlusIcon size={16} aria-label="Plus icon" />} />
-      <Button variant="icon" size="medium" icon={<HomeIcon size={20} aria-label="Home icon" />} />
-      <Button variant="icon" size="large" icon={<TrashIcon size={24} aria-label="Trash icon" />} />
+      <Button variant="icon" size="small">
+        <PlusIcon size={16} aria-label="Plus icon" />
+      </Button>
+      <Button variant="icon" size="medium">
+        <HomeIcon size={20} aria-label="Home icon" />
+      </Button>
+      <Button variant="icon" size="large">
+        <TrashIcon size={24} aria-label="Trash icon" />
+      </Button>
     </div>
   ),
 };

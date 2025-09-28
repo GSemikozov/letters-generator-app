@@ -220,7 +220,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
           )}
           {!isLoading && (
             <div className={styles.copyButtonContainer}>
-              <CopyButton text={generatedText || ''} variant="ghost" size="large">
+              <CopyButton text={generatedText || ''} variant="ghost">
                 Copy to clipboard
               </CopyButton>
             </div>
