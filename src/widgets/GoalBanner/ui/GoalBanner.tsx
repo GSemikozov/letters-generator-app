@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import type { CreateLetterFormRef } from '../../../features/CreateLetter/ui/CreateLetterForm';
 import { useAppStore } from '../../../shared/lib/store';
 import { Button } from '../../../shared/ui/Button';
 import { ProgressIndicator } from '../../../shared/ui/ProgressIndicator';
@@ -6,10 +7,16 @@ import { Typography } from '../../../shared/ui/Typography';
 import { PlusIcon } from '../../../shared/ui/icons';
 import styles from './GoalBanner.module.css';
 
-export const GoalBanner = () => {
+interface GoalBannerProps {
+  formRef?: React.RefObject<CreateLetterFormRef>;
+}
+
+export const GoalBanner = ({ formRef }: GoalBannerProps) => {
   const { letters, goalCount } = useAppStore();
+  const location = useLocation();
   const currentCount = letters.length;
   const isGoalReached = currentCount >= goalCount;
+  const isOnFormPage = location.pathname === '/create';
 
   if (isGoalReached) {
     return null;
@@ -25,12 +32,25 @@ export const GoalBanner = () => {
           <Typography variant="bodyLarge" color="secondary" className={styles.description}>
             Generate and send out couple more job applications to get hired faster
           </Typography>
-          <Link to="/create">
-            <Button type="button" variant="primary" size="large" className={styles.createButton}>
+          {isOnFormPage ? (
+            <Button
+              type="button"
+              variant="primary"
+              size="large"
+              className={styles.createButton}
+              onClick={() => formRef?.current?.clearForm()}
+            >
               <PlusIcon size={24} aria-label="Plus icon" />
               Create New
             </Button>
-          </Link>
+          ) : (
+            <Link to="/create">
+              <Button type="button" variant="primary" size="large" className={styles.createButton}>
+                <PlusIcon size={24} aria-label="Plus icon" />
+                Create New
+              </Button>
+            </Link>
+          )}
         </div>
         <div className={styles.progressSection}>
           <ProgressIndicator

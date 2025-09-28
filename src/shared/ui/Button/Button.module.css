@@ -147,4 +147,5 @@
 .button.loading {
   pointer-events: none;
   cursor: not-allowed;
+  min-height: inherit;
 }

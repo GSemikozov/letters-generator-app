@@ -1,2 +1,2 @@
-export { CreateLetterForm } from './ui/CreateLetterForm';
+export { CreateLetterForm, type CreateLetterFormRef } from './ui/CreateLetterForm';
 export { useCreateLetter } from './model/useCreateLetter';

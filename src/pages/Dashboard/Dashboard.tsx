@@ -56,7 +56,7 @@ export const Dashboard = () => {
               />
             ))}
           </div>
-          {letters.length < 5 && <GoalBanner />}
+          {letters.length < 5 && <GoalBanner formRef={undefined} />}
         </>
       </Layout>
     </>

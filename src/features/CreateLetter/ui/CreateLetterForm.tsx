@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   type LetterFormData,
@@ -16,7 +16,11 @@ import { RepeatIcon } from '../../../shared/ui/icons';
 import { useCreateLetter } from '../model/useCreateLetter';
 import styles from './CreateLetterForm.module.css';
 
-export const CreateLetterForm = () => {
+export interface CreateLetterFormRef {
+  clearForm: () => void;
+}
+
+export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
   const { createLetter, regenerateLetter, isLoading } = useCreateLetter();
   const [generatedText, setGeneratedText] = useState<string>('');
   const [currentLetterId, setCurrentLetterId] = useState<string | null>(null);
@@ -49,6 +53,19 @@ export const CreateLetterForm = () => {
     setGeneratedText('');
     setCurrentLetterId(null);
   }, [reset]);
+
+  // Expose clearForm method to parent components
+  useImperativeHandle(
+    ref,
+    () => ({
+      clearForm: () => {
+        reset(defaultLetterFormData);
+        setGeneratedText('');
+        setCurrentLetterId(null);
+      },
+    }),
+    [reset]
+  );
 
   const handleSuccess = (generatedText: string) => {
     setGeneratedText(generatedText);
@@ -175,7 +192,7 @@ export const CreateLetterForm = () => {
                 }
                 className={styles.generateButton}
               >
-                Generate Now
+                {!isLoading && 'Generate Now'}
               </Button>
             )}
           </div>
@@ -211,4 +228,4 @@ export const CreateLetterForm = () => {
       </div>
     </div>
   );
-};
+});
