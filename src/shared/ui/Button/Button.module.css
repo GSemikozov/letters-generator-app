@@ -9,11 +9,11 @@
   font-family: var(--font-family-primary);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
-  line-height: 1.5;
+  line-height: 1.4;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-duration-fast) var(--transition-timing-ease);
-  min-height: 2.75rem; /* 44px */
+  height: 2.75rem; /* 44px */
   white-space: nowrap;
   position: relative;
 }
@@ -89,40 +89,40 @@
 .small {
   padding: var(--spacing-2) var(--spacing-4);
   font-size: var(--font-size-sm);
-  min-height: 2rem; /* 32px */
+  height: 2rem; /* 32px */
   gap: var(--spacing-1);
 }
 
 .medium {
   padding: var(--spacing-3) var(--spacing-7);
   font-size: var(--font-size-base);
-  min-height: 2.75rem; /* 44px */
+  height: 2.75rem; /* 44px */
   gap: var(--spacing-2);
 }
 
 .large {
   padding: var(--spacing-4) var(--spacing-7);
   font-size: var(--font-size-lg);
-  min-height: 3.75rem; /* 60px */
+  height: 3.75rem; /* 60px */
   gap: var(--spacing-3);
 }
 
 .icon.small {
   padding: var(--spacing-1_5);
   min-width: 2rem; /* 32px */
-  min-height: 2rem; /* 32px */
+  height: 2rem; /* 32px */
 }
 
 .icon.medium {
   padding: var(--spacing-2);
   min-width: 2.5rem; /* 40px */
-  min-height: 2.5rem; /* 40px */
+  height: 2.5rem; /* 40px */
 }
 
 .icon.large {
   padding: var(--spacing-3);
   min-width: 3rem; /* 48px */
-  min-height: 3rem; /* 48px */
+  height: 3rem; /* 48px */
 }
 
 .button .iconSlot {
@@ -147,5 +147,4 @@
 .button.loading {
   pointer-events: none;
   cursor: not-allowed;
-  min-height: inherit;
 }
