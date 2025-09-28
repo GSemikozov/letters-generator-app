@@ -167,6 +167,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
               <Button
                 type="button"
                 variant="secondary"
+                size="large"
                 onClick={handleTryAgain}
                 loading={isLoading}
                 className={styles.tryAgainButton}
@@ -219,7 +220,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
           )}
           {!isLoading && (
             <div className={styles.copyButtonContainer}>
-              <CopyButton text={generatedText || ''} variant="ghost" size="medium">
+              <CopyButton text={generatedText || ''} variant="ghost" size="large">
                 Copy to clipboard
               </CopyButton>
             </div>
