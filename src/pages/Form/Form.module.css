@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: var(--spacing-6); /* 24px */
+  padding-bottom: var(--spacing-6);
   border-bottom: 1px solid var(--color-figma-gray-100);
-  margin-bottom: var(--spacing-6); /* 24px */
+  margin-bottom: var(--spacing-6);
 }
 
 .pageTitle {
@@ -16,10 +16,9 @@
 }
 
 .goalBannerContainer {
-  margin-top: var(--spacing-12); /* 48px */
+  margin-top: var(--spacing-12);
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .pageHeader {
     flex-direction: column;
