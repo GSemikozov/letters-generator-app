@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import styles from './LoadingIcon.module.css';
 
 interface LoadingIconProps {
@@ -18,7 +19,7 @@ export const LoadingIcon = ({
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`${styles.loadingIcon} ${className}`}
+      className={classNames(styles.loadingIcon, className)}
       aria-label={ariaLabel || 'Loading icon'}
     >
       <title>{ariaLabel || 'Loading icon'}</title>

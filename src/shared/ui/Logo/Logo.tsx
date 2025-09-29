@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import styles from './Logo.module.css';
 
 export interface LogoProps {
@@ -8,7 +9,7 @@ export interface LogoProps {
 
 export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoProps) => {
   return (
-    <div className={`${styles.logo} ${styles[size]} ${className}`}>
+    <div className={classNames(styles.logo, styles[size], className)}>
       <div className={styles.logomark}>
         <svg
           width="44"

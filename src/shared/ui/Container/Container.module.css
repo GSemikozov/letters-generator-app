@@ -5,26 +5,25 @@
 }
 
 .sm {
-  max-width: 640px; /* 640px */
+  max-width: 640px;
 }
 
 .md {
-  max-width: 768px; /* 768px */
+  max-width: 768px;
 }
 
 .lg {
-  max-width: 1024px; /* 1024px */
+  max-width: 1024px;
 }
 
 .xl {
-  max-width: 1120px; /* 1120px - from Figma */
+  max-width: 1120px;
 }
 
 .full {
   max-width: 100%;
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--spacing-4);
