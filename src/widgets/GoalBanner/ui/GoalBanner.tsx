@@ -30,14 +30,13 @@ export const GoalBanner = ({ formRef }: GoalBannerProps) => {
             Hit your goal
           </Typography>
           <Typography variant="bodyLarge" color="secondary" className={styles.description}>
-            Generate and send out couple more job applications to get hired faster
+            Generate and send out couple more job applications today to get hired faster
           </Typography>
           {isOnFormPage ? (
             <Button
               type="button"
               variant="primary"
               size="large"
-              className={styles.createButton}
               onClick={() => formRef?.current?.clearForm()}
             >
               <PlusIcon size={24} aria-label="Plus icon" />
@@ -45,7 +44,7 @@ export const GoalBanner = ({ formRef }: GoalBannerProps) => {
             </Button>
           ) : (
             <Link to="/create">
-              <Button type="button" variant="primary" size="large" className={styles.createButton}>
+              <Button type="button" variant="primary" size="large">
                 <PlusIcon size={24} aria-label="Plus icon" />
                 Create New
               </Button>

@@ -1,112 +1,50 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
   text-decoration: none;
   color: inherit;
 }
 
-.logomark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.logomarkImage {
+.logoImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.logotype {
-  display: flex;
-  align-items: center;
-}
-
-.logoText {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  line-height: 1.33;
-  letter-spacing: -0.48px;
-}
-
 .small {
-  gap: var(--spacing-2);
-}
-
-.small .logomark {
-  width: 32px;
   height: 32px;
 }
 
-.small .logomark svg {
-  width: 32px;
+.small .logoImage {
   height: 32px;
-}
-
-.small .logoText {
-  font-size: var(--font-size-lg);
-  letter-spacing: -0.36px;
+  width: auto;
 }
 
 .medium {
-  gap: var(--spacing-3);
+  height: 48px;
 }
 
-.medium .logomark {
-  width: 44px;
-  height: 44px;
-}
-
-.medium .logomark svg {
-  width: 44px;
-  height: 44px;
-}
-
-.medium .logoText {
-  font-size: var(--font-size-2xl);
-  letter-spacing: -0.48px;
+.medium .logoImage {
+  height: 48px;
+  width: auto;
 }
 
 .large {
-  gap: var(--spacing-4);
-}
-
-.large .logomark {
-  width: 56px;
   height: 56px;
 }
 
-.large .logomark svg {
-  width: 56px;
+.large .logoImage {
   height: 56px;
-}
-
-.large .logoText {
-  font-size: var(--font-size-3xl);
-  letter-spacing: -0.6px;
+  width: auto;
 }
 
 @media (max-width: 768px) {
-  .logo {
-    gap: var(--spacing-2);
-  }
-
-  .logoText {
-    font-size: var(--font-size-lg);
-    letter-spacing: -0.36px;
-  }
-
-  .medium .logomark {
-    width: 36px;
+  .medium {
     height: 36px;
   }
 
-  .medium .logomark svg {
-    width: 36px;
+  .medium .logoImage {
     height: 36px;
+    width: auto;
   }
 }

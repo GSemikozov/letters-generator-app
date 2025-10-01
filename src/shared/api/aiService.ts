@@ -27,8 +27,9 @@ Requirements:
 - Highlight relevant skills and experience
 - Show enthusiasm for the role
 - Keep it concise but comprehensive
-- Use proper business letter format
-- Address the letter to the company team
+- Start directly with "Dear Hiring Team,"
+- Do not include sender's contact details or date at the top
+- End with "Best regards, [Your Name]"
 
 Please write a compelling cover letter that would make the candidate stand out.`;
 
@@ -45,7 +46,7 @@ Please write a compelling cover letter that would make the candidate stand out.`
             {
               role: 'system',
               content:
-                "You are a professional career advisor who writes compelling cover letters. Write in a professional, engaging tone that highlights the candidate's strengths and enthusiasm for the role.",
+                "You are a professional career advisor who writes compelling cover letters. Write in a professional, engaging tone that highlights the candidate's strengths and enthusiasm for the role. Format the letter with proper paragraph breaks and spacing between sections.",
             },
             {
               role: 'user',
@@ -78,7 +79,7 @@ export class MockAIService implements AIService {
     const delay = Math.random() * 1000 + 2000; // 2000-3000ms
     await new Promise((resolve) => setTimeout(resolve, delay));
 
-    return `Dear ${company} Team,
+    return `Dear Hiring Team,
 
 I am writing to express my strong interest in the ${jobTitle} position at ${company}.
 

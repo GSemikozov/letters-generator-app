@@ -46,16 +46,18 @@ export const Dashboard = () => {
           </Link>
         </div>
         <>
-          <div className={styles.lettersGrid}>
-            {letters.map((letter) => (
-              <LetterCard
-                key={letter.id}
-                text={letter.generatedText}
-                onDelete={() => handleDelete(letter.id)}
-                onCopy={handleCopy}
-              />
-            ))}
-          </div>
+          {letters.length > 0 && (
+            <div className={styles.lettersGrid}>
+              {letters.map((letter) => (
+                <LetterCard
+                  key={letter.id}
+                  text={letter.generatedText}
+                  onDelete={() => handleDelete(letter.id)}
+                  onCopy={handleCopy}
+                />
+              ))}
+            </div>
+          )}
           {letters.length < 5 && <GoalBanner formRef={undefined} />}
         </>
       </Layout>

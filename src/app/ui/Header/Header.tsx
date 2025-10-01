@@ -18,7 +18,7 @@ export const Header = () => {
         <div className={styles.headerContent}>
           <div className={styles.left}>
             <Link to="/" className={styles.logo}>
-              <Logo size="medium" showText={true} />
+              <Logo size="medium" />
             </Link>
           </div>
 

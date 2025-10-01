@@ -127,7 +127,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
               id="jobTitle"
               label="Job title"
               {...register('jobTitle')}
-              placeholder="e.g., Product manager"
+              placeholder="Product manager"
               error={errors.jobTitle?.message}
               required
             />
@@ -136,7 +136,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
               id="company"
               label="Company"
               {...register('company')}
-              placeholder="e.g., Apple"
+              placeholder="Apple"
               error={errors.company?.message}
               required
             />
@@ -146,7 +146,7 @@ export const CreateLetterForm = forwardRef<CreateLetterFormRef>((_, ref) => {
             id="skills"
             label="I am good at..."
             {...register('skills')}
-            placeholder="e.g., HTML, CSS and doing things in time"
+            placeholder="HTML, CSS and doing things in time"
             error={errors.skills?.message}
             required
           />

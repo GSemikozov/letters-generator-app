@@ -45,7 +45,7 @@ export const LetterCard = ({ text, onDelete, onCopy, className }: LetterCardProp
             variant="ghost"
             size="small"
             onCopy={onCopy}
-            className={classNames(styles.actionButton, styles.copyButton)}
+            className={styles.actionButton}
           >
             Copy to clipboard
           </CopyButton>

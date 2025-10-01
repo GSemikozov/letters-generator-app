@@ -6,9 +6,46 @@ html {
   font-size: 16px;
 }
 
+/* Self-hosted Fixel fonts */
+@font-face {
+  font-family: "Fixel Text";
+  src: url("/fonts/FixelText-Regular.woff2") format("woff2"), url("/fonts/FixelText-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("/fonts/FixelText-Medium.woff2") format("woff2"), url("/fonts/FixelText-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("/fonts/FixelText-SemiBold.woff2") format("woff2"), url("/fonts/FixelText-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("/fonts/FixelDisplay-SemiBold.woff2") format("woff2"),
+    url("/fonts/FixelDisplay-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
@@ -98,7 +135,7 @@ textarea:focus-visible {
 
   /* Semantic colors */
   --color-success-50: #edfcf2;
-  --color-success-200: #d1fadf;
+  --color-success-200: #d3f8df;
   --color-success-300: #73e2a3;
   --color-success-500: var(--color-primary-500);
   --color-success-600: var(--color-primary-700);
@@ -120,17 +157,17 @@ textarea:focus-visible {
   --color-surface-primary: var(--color-white);
   --color-surface-hover: var(--color-figma-gray-50);
   --color-surface-active: var(--color-figma-gray-100);
-  --color-surface-disabled: var(--color-figma-gray-100);
+  --color-surface-disabled: #d0d5dd;
 
   /* Border colors */
   --color-border-primary: var(--color-figma-gray-200);
-  --color-border-focus: var(--color-primary-700);
+  --color-border-focus: #73e2a3;
 
   /* Text colors */
   --color-text-primary: var(--color-figma-gray-600);
   --color-text-secondary: var(--color-figma-gray-300);
   --color-text-tertiary: var(--color-figma-gray-500);
-  --color-text-disabled: var(--color-figma-gray-300);
+  --color-text-disabled: #98a2b3;
   --color-text-inverse: var(--color-white);
   --color-text-error: var(--color-error-500);
 
@@ -139,6 +176,7 @@ textarea:focus-visible {
   --spacing-1: 0.25rem; /* 4px */
   --spacing-2: 0.5rem; /* 8px */
   --spacing-3: 0.75rem; /* 12px */
+  --spacing-3_5: 0.875rem; /* 14px */
   --spacing-4: 1rem; /* 16px */
   --spacing-5: 1.25rem; /* 20px */
   --spacing-6: 1.5rem; /* 24px */
@@ -155,8 +193,10 @@ textarea:focus-visible {
   --spacing-figma-54: 3.375rem; /* 54px */
 
   /* ===== TYPOGRAPHY ===== */
-  --font-family-primary: "Fixel", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-family-heading: "Fixel Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-family-body: "Fixel Text", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
   /* Font sizes */
   --font-size-xs: 0.75rem; /* 12px */

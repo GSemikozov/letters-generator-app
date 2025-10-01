@@ -1,5 +1,5 @@
 .heading1 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-5xl); /* 48px */
   font-weight: var(--font-weight-semibold); /* 600 */
   line-height: 1.25; /* 60px */
@@ -9,7 +9,7 @@
 }
 
 .heading2 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-4xl); /* 36px */
   font-weight: var(--font-weight-semibold); /* 600 */
   line-height: 1.22; /* 44px */
@@ -19,7 +19,7 @@
 }
 
 .heading3 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-2xl); /* 24px */
   font-weight: var(--font-weight-semibold); /* 600 */
   line-height: 1.33; /* 32px */
@@ -28,7 +28,7 @@
 }
 
 .body {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-base); /* 16px */
   font-weight: var(--font-weight-normal); /* 400 */
   line-height: 1.5; /* 24px */
@@ -37,7 +37,7 @@
 }
 
 .bodyLarge {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-lg); /* 18px */
   font-weight: var(--font-weight-normal); /* 400 */
   line-height: 1.56; /* 28px */
@@ -46,7 +46,7 @@
 }
 
 .bodyMedium {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-base); /* 16px */
   font-weight: var(--font-weight-medium); /* 500 */
   line-height: 1.5; /* 24px */
@@ -55,7 +55,7 @@
 }
 
 .bodySemibold {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-base); /* 16px */
   font-weight: var(--font-weight-semibold); /* 600 */
   line-height: 1.5; /* 24px */
@@ -64,7 +64,7 @@
 }
 
 .caption {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-sm); /* 14px */
   font-weight: var(--font-weight-normal); /* 400 */
   line-height: 1.43; /* 20px */
@@ -73,7 +73,7 @@
 }
 
 .small {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-xs); /* 12px */
   font-weight: var(--font-weight-normal); /* 400 */
   line-height: 1.33; /* 16px */
