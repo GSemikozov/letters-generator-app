@@ -103,6 +103,19 @@ npm run storybook
 npm run build-storybook
 ```
 
+### Линтинг и форматирование (Biome)
+
+```bash
+# Проверка линта
+npm run lint
+
+# Линт + авто-фикс
+npm run lint:fix
+
+# Форматирование кода
+npm run format
+```
+
 ## AI Интеграция
 
 Приложение поддерживает два режима генерации писем:

@@ -2,7 +2,7 @@ import type { Decorator } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from '../src/app/providers/AppProvider';
 
-export const withRouter: Decorator = (Story, context) => {
+export const withRouter: Decorator = (Story, _context) => {
   return (
     <BrowserRouter>
       <AppProvider>
@@ -12,7 +12,7 @@ export const withRouter: Decorator = (Story, context) => {
   );
 };
 
-export const withRouterOnly: Decorator = (Story, context) => {
+export const withRouterOnly: Decorator = (Story, _context) => {
   return (
     <BrowserRouter>
       <Story />
