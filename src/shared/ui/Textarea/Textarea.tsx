@@ -11,7 +11,10 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 }
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, success, showCharacterCount, maxLength, className, onChange, ...props }, ref) => {
+  (
+    { label, error, success, showCharacterCount, maxLength, className, onChange, ...props },
+    ref
+  ) => {
     const textareaClasses = classNames(
       styles.textarea,
       { [styles.invalid]: error },
